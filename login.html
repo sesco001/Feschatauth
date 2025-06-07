@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <script>
+    async function register() {
+      const phone = document.getElementById('phone').value;
+      const pass = document.getElementById('password').value;
+
+      const res = await fetch('http://localhost:8080/auth/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({phoneNumber: phone, password: pass})
+      });
+
+      const text = await res.text();
+      alert(text);
+    }
+  </script>
+</head>
+<body>
+  <h2>Register</h2>
+  <input type="text" id="phone" placeholder="Phone Number" /><br />
+  <input type="password" id="password" placeholder="Password" /><br />
+  <button onclick="register()">Register</button>
+</body>
+</html>
